@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SponserConnect</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body style="background:#DEAC80;">
+    <div class="container mt-5">
+        <h3 class="text-center">Influencer Registeration</h3>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="row mt-3 justify-content-center">
+            {% for message in messages %}
+            <span class="badge text-bg-info">{{message}}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+        <div class="row mt-3 justify-content-center">
+            <div class="col-md-4 bg-light p-3">
+                <form action="/influencer/register" method="post" >
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="niche">Niche</label>
+                        <input type="text" class="form-control" id="niche" name="niche" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reach">Reach (e.g. 100k, 1M etc.)</label>
+                        <input type="text" class="form-control" id="reach" name="reach" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                    <hr><div>Already have an account? <a href="/influencer/login">Login</a></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

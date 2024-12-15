@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SponserConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body style="background:#DEAC80;">
+    <nav class="navbar bg-primary navbar-expand-lg" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/sponsor/dashboard">SponsorConnect</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end">
+                <div class="navbar-nav">
+                    <a class="nav-link active" href="/campaign/create">Create Campaign</a>
+                    <a class="nav-link active" href="/sponsor/connect">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h3 class="text-center">Update Ad Request</h3>
+        <div class="row">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="row justify-content-center">
+                {% for message in messages %}
+                <div class="alert alert-info alert-dismissible fade show p-2 mt-1 col-md-8" role="alert">{{ message }}
+                <button type="button" class="btn-close p-2 " data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+          </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8 bg-light p-3">
+                <form action="/request/update/{{request.id}}" method="post">
+                    <div class="mb-2">
+                        <label for="campaign_id">Campaign</label>
+                        <input type="text" class="form-control" name="campaign_id" disabled value="{{request.campaign.name}}">
+                    </div>
+                    <div class="mb-2">
+                        <label for="influencer">Influencer</label>
+                        <input type="text" class="form-control" name="influencer" disabled value="{{request.influencer.name}}">
+                    </div>
+                    <div class="mb-2">
+                        <label for="message">Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="3" required>{{request.message}}</textarea>
+                    </div>
+                    <div class="mb-2">
+                        <label for="requirements">Requirements</label>
+                        <textarea class="form-control" id="requirements" name="requirements" rows="3" required>{{request.requirements}}</textarea>
+                    </div>
+                    <div class="mb-2">
+                        <label for="payment_amount">Payment Amount</label>
+                        <input type="number" class="form-control" id="payment_amount" name="payment_amount" required value="{{request.payment_amount}}">
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Update Ad Request</button>
+                
+            </div>
+        </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
